@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SmartFridgeModelStoreContainer" CdmEntityContainer="Connection">
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="SmartFridgeModel.Items">
+        <MappingFragment StoreEntitySet="Items">
+          <ScalarProperty Name="DescItem" ColumnName="DescItem" />
+          <ScalarProperty Name="IdItem" ColumnName="IdItem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventory">
+      <EntityTypeMapping TypeName="SmartFridgeModel.Inventory">
+        <MappingFragment StoreEntitySet="Inventory">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="IdItem" ColumnName="IdItem" />
+          <ScalarProperty Name="IdRegistry" ColumnName="IdRegistry" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorLog">
+      <EntityTypeMapping TypeName="SmartFridgeModel.ErrorLog">
+        <MappingFragment StoreEntitySet="ErrorLog">
+          <ScalarProperty Name="StackTraceError" ColumnName="StackTraceError" />
+          <ScalarProperty Name="DescError" ColumnName="DescError" />
+          <ScalarProperty Name="IdError" ColumnName="IdError" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recipe">
+      <EntityTypeMapping TypeName="SmartFridgeModel.Recipe">
+        <MappingFragment StoreEntitySet="Recipe">
+          <ScalarProperty Name="Preparation" ColumnName="Preparation" />
+          <ScalarProperty Name="DescRecipe" ColumnName="DescRecipe" />
+          <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Item_Recipe" TypeName="SmartFridgeModel.Item_Recipe" StoreEntitySet="Item_Recipe">
+      <EndProperty Name="Recipe">
+        <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+      </EndProperty>
+      <EndProperty Name="Items">
+        <ScalarProperty Name="IdItem" ColumnName="IdItem" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="OtherProducts">
+      <EntityTypeMapping TypeName="SmartFridgeModel.OtherProducts">
+        <MappingFragment StoreEntitySet="OtherProducts">
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="OtheProducts_Recipe" TypeName="SmartFridgeModel.OtheProducts_Recipe" StoreEntitySet="OtheProducts_Recipe">
+      <EndProperty Name="Recipe">
+        <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+      </EndProperty>
+      <EndProperty Name="OtherProducts">
+        <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="FridgeControls">
+      <EntityTypeMapping TypeName="SmartFridgeModel.FridgeControls">
+        <MappingFragment StoreEntitySet="FridgeControls">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="IdControl" ColumnName="IdControl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

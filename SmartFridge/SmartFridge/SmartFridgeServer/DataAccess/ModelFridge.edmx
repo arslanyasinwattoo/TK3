@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SmartFridgeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="IdError" />
+          </Key>
+          <Property Name="IdError" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescError" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="StackTraceError" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FridgeControls">
+          <Key>
+            <PropertyRef Name="IdControl" />
+          </Key>
+          <Property Name="IdControl" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="IdRegistry" />
+          </Key>
+          <Property Name="IdRegistry" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdItem" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item_Recipe">
+          <Key>
+            <PropertyRef Name="IdRecipe" />
+            <PropertyRef Name="IdItem" />
+          </Key>
+          <Property Name="IdRecipe" Type="int" Nullable="false" />
+          <Property Name="IdItem" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="IdItem" />
+          </Key>
+          <Property Name="IdItem" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DescItem" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OtheProducts_Recipe">
+          <Key>
+            <PropertyRef Name="IdRecipe" />
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdRecipe" Type="int" Nullable="false" />
+          <Property Name="IdProduct" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OtherProducts">
+          <Key>
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdProduct" Type="int" Nullable="false" />
+          <Property Name="ProductDescription" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Recipe">
+          <Key>
+            <PropertyRef Name="IdRecipe" />
+          </Key>
+          <Property Name="IdRecipe" Type="int" Nullable="false" />
+          <Property Name="DescRecipe" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Preparation" Type="varchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Inventory_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="IdItem" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="IdItem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Recipe_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="Item_Recipe" Type="Self.Item_Recipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="IdItem" />
+            </Principal>
+            <Dependent Role="Item_Recipe">
+              <PropertyRef Name="IdItem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Recipe_Recipe">
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="Item_Recipe" Type="Self.Item_Recipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="IdRecipe" />
+            </Principal>
+            <Dependent Role="Item_Recipe">
+              <PropertyRef Name="IdRecipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OtheProducts_Recipe_OtherProducts">
+          <End Role="OtherProducts" Type="Self.OtherProducts" Multiplicity="1" />
+          <End Role="OtheProducts_Recipe" Type="Self.OtheProducts_Recipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OtherProducts">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="OtheProducts_Recipe">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OtheProducts_Recipe_Recipe">
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="OtheProducts_Recipe" Type="Self.OtheProducts_Recipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="IdRecipe" />
+            </Principal>
+            <Dependent Role="OtheProducts_Recipe">
+              <PropertyRef Name="IdRecipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SmartFridgeModelStoreContainer">
+          <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FridgeControls" EntityType="Self.FridgeControls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item_Recipe" EntityType="Self.Item_Recipe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OtheProducts_Recipe" EntityType="Self.OtheProducts_Recipe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OtherProducts" EntityType="Self.OtherProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recipe" EntityType="Self.Recipe" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Inventory_Items" Association="Self.FK_Inventory_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Recipe_Items" Association="Self.FK_Item_Recipe_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="Item_Recipe" EntitySet="Item_Recipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Recipe_Recipe" Association="Self.FK_Item_Recipe_Recipe">
+            <End Role="Recipe" EntitySet="Recipe" />
+            <End Role="Item_Recipe" EntitySet="Item_Recipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OtheProducts_Recipe_OtherProducts" Association="Self.FK_OtheProducts_Recipe_OtherProducts">
+            <End Role="OtherProducts" EntitySet="OtherProducts" />
+            <End Role="OtheProducts_Recipe" EntitySet="OtheProducts_Recipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OtheProducts_Recipe_Recipe" Association="Self.FK_OtheProducts_Recipe_Recipe">
+            <End Role="Recipe" EntitySet="Recipe" />
+            <End Role="OtheProducts_Recipe" EntitySet="OtheProducts_Recipe" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SmartFridgeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Connection" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Items" EntityType="SmartFridgeModel.Items" />
+          <EntitySet Name="Inventory" EntityType="SmartFridgeModel.Inventory" />
+          <AssociationSet Name="FK_Inventory_Items" Association="SmartFridgeModel.FK_Inventory_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <EntitySet Name="ErrorLog" EntityType="SmartFridgeModel.ErrorLog" />
+          <EntitySet Name="Recipe" EntityType="SmartFridgeModel.Recipe" />
+          <AssociationSet Name="Item_Recipe" Association="SmartFridgeModel.Item_Recipe">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="Recipe" EntitySet="Recipe" />
+          </AssociationSet>
+          <EntitySet Name="OtherProducts" EntityType="SmartFridgeModel.OtherProducts" />
+          <AssociationSet Name="OtheProducts_Recipe" Association="SmartFridgeModel.OtheProducts_Recipe">
+            <End Role="OtherProducts" EntitySet="OtherProducts" />
+            <End Role="Recipe" EntitySet="Recipe" />
+          </AssociationSet>
+          <EntitySet Name="FridgeControls" EntityType="SmartFridgeModel.FridgeControls" />
+        </EntityContainer>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="IdItem" />
+          </Key>
+          <Property Name="IdItem" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DescItem" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Inventory" Relationship="SmartFridgeModel.FK_Inventory_Items" FromRole="Items" ToRole="Inventory" />
+          <NavigationProperty Name="Recipe" Relationship="SmartFridgeModel.Item_Recipe" FromRole="Items" ToRole="Recipe" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="IdRegistry" />
+          </Key>
+          <Property Name="IdRegistry" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdItem" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Items" Relationship="SmartFridgeModel.FK_Inventory_Items" FromRole="Inventory" ToRole="Items" />
+        </EntityType>
+        <Association Name="FK_Inventory_Items">
+          <End Type="SmartFridgeModel.Items" Role="Items" Multiplicity="1" />
+          <End Type="SmartFridgeModel.Inventory" Role="Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="IdItem" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="IdItem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="IdError" />
+          </Key>
+          <Property Name="IdError" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescError" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="StackTraceError" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Recipe">
+          <Key>
+            <PropertyRef Name="IdRecipe" />
+          </Key>
+          <Property Name="IdRecipe" Type="Int32" Nullable="false" />
+          <Property Name="DescRecipe" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Preparation" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Items" Relationship="SmartFridgeModel.Item_Recipe" FromRole="Recipe" ToRole="Items" />
+          <NavigationProperty Name="OtherProducts" Relationship="SmartFridgeModel.OtheProducts_Recipe" FromRole="Recipe" ToRole="OtherProducts" />
+        </EntityType>
+        <Association Name="Item_Recipe">
+          <End Type="SmartFridgeModel.Items" Role="Items" Multiplicity="*" />
+          <End Type="SmartFridgeModel.Recipe" Role="Recipe" Multiplicity="*" />
+        </Association>
+        <EntityType Name="OtherProducts">
+          <Key>
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdProduct" Type="Int32" Nullable="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Recipe" Relationship="SmartFridgeModel.OtheProducts_Recipe" FromRole="OtherProducts" ToRole="Recipe" />
+        </EntityType>
+        <Association Name="OtheProducts_Recipe">
+          <End Type="SmartFridgeModel.OtherProducts" Role="OtherProducts" Multiplicity="*" />
+          <End Type="SmartFridgeModel.Recipe" Role="Recipe" Multiplicity="*" />
+        </Association>
+        <EntityType Name="FridgeControls">
+          <Key>
+            <PropertyRef Name="IdControl" />
+          </Key>
+          <Property Name="IdControl" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SmartFridgeModelStoreContainer" CdmEntityContainer="Connection">
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="SmartFridgeModel.Items">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="DescItem" ColumnName="DescItem" />
+                <ScalarProperty Name="IdItem" ColumnName="IdItem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventory">
+            <EntityTypeMapping TypeName="SmartFridgeModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IdItem" ColumnName="IdItem" />
+                <ScalarProperty Name="IdRegistry" ColumnName="IdRegistry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ErrorLog">
+            <EntityTypeMapping TypeName="SmartFridgeModel.ErrorLog">
+              <MappingFragment StoreEntitySet="ErrorLog">
+                <ScalarProperty Name="StackTraceError" ColumnName="StackTraceError" />
+                <ScalarProperty Name="DescError" ColumnName="DescError" />
+                <ScalarProperty Name="IdError" ColumnName="IdError" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recipe">
+            <EntityTypeMapping TypeName="SmartFridgeModel.Recipe">
+              <MappingFragment StoreEntitySet="Recipe">
+                <ScalarProperty Name="Preparation" ColumnName="Preparation" />
+                <ScalarProperty Name="DescRecipe" ColumnName="DescRecipe" />
+                <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Item_Recipe" TypeName="SmartFridgeModel.Item_Recipe" StoreEntitySet="Item_Recipe">
+            <EndProperty Name="Recipe">
+              <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+            </EndProperty>
+            <EndProperty Name="Items">
+              <ScalarProperty Name="IdItem" ColumnName="IdItem" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="OtherProducts">
+            <EntityTypeMapping TypeName="SmartFridgeModel.OtherProducts">
+              <MappingFragment StoreEntitySet="OtherProducts">
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="OtheProducts_Recipe" TypeName="SmartFridgeModel.OtheProducts_Recipe" StoreEntitySet="OtheProducts_Recipe">
+            <EndProperty Name="Recipe">
+              <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+            </EndProperty>
+            <EndProperty Name="OtherProducts">
+              <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="FridgeControls">
+            <EntityTypeMapping TypeName="SmartFridgeModel.FridgeControls">
+              <MappingFragment StoreEntitySet="FridgeControls">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="IdControl" ColumnName="IdControl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

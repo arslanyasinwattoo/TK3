@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#000000">
+    <TextView
+        android:layout_width="140dp"
+        android:layout_height="31dp"
+        android:text="Temperature"
+        android:id="@+id/textView2"
+        android:textSize="17dp"
+        android:textColor="#f9f93d"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:text="C"
+        android:id="@+id/textView4"
+        android:textSize="25dp"
+        android:textColor="#FFFFFF"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>

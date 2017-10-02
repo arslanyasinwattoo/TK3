@@ -1,0 +1,6 @@
+C:\Users\sergiocardenas\OneDrive\Documentos\Alemania\TU\1 Semester\Ubiquituous Computing\Final Assigm\SmartFridge\ServiceTest\bin\Debug\ServiceTest.exe.config
+C:\Users\sergiocardenas\OneDrive\Documentos\Alemania\TU\1 Semester\Ubiquituous Computing\Final Assigm\SmartFridge\ServiceTest\bin\Debug\ServiceTest.exe
+C:\Users\sergiocardenas\OneDrive\Documentos\Alemania\TU\1 Semester\Ubiquituous Computing\Final Assigm\SmartFridge\ServiceTest\bin\Debug\ServiceTest.pdb
+C:\Users\sergiocardenas\OneDrive\Documentos\Alemania\TU\1 Semester\Ubiquituous Computing\Final Assigm\SmartFridge\ServiceTest\obj\Debug\ServiceTest.exe
+C:\Users\sergiocardenas\OneDrive\Documentos\Alemania\TU\1 Semester\Ubiquituous Computing\Final Assigm\SmartFridge\ServiceTest\obj\Debug\ServiceTest.pdb
+C:\Users\sergiocardenas\OneDrive\Documentos\Alemania\TU\1 Semester\Ubiquituous Computing\Final Assigm\SmartFridge\ServiceTest\obj\Debug\ServiceTest.csprojResolveAssemblyReference.cache

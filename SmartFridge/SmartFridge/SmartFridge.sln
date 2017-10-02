@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFridge", "SmartFridge\SmartFridge.csproj", "{3D2D9741-F057-487C-92A9-5F92E2A30243}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFridgeServer", "SmartFridgeServer\SmartFridgeServer.csproj", "{07A30DB7-9686-436B-B19D-F956C7AB29A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceTest", "ServiceTest\ServiceTest.csproj", "{C2CBA7A1-9278-41D9-B10D-A770B08B1D79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D2D9741-F057-487C-92A9-5F92E2A30243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D2D9741-F057-487C-92A9-5F92E2A30243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D2D9741-F057-487C-92A9-5F92E2A30243}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3D2D9741-F057-487C-92A9-5F92E2A30243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D2D9741-F057-487C-92A9-5F92E2A30243}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D2D9741-F057-487C-92A9-5F92E2A30243}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{07A30DB7-9686-436B-B19D-F956C7AB29A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07A30DB7-9686-436B-B19D-F956C7AB29A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07A30DB7-9686-436B-B19D-F956C7AB29A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07A30DB7-9686-436B-B19D-F956C7AB29A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2CBA7A1-9278-41D9-B10D-A770B08B1D79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2CBA7A1-9278-41D9-B10D-A770B08B1D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2CBA7A1-9278-41D9-B10D-A770B08B1D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2CBA7A1-9278-41D9-B10D-A770B08B1D79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

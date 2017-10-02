@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    >
+
+    <TextView
+        android:layout_width="96dp"
+        android:layout_height="31dp"
+        android:text="Inventory"
+        android:id="@+id/textView2"
+        android:textSize="17dp"
+        android:textColor="#f9f93d"
+        android:layout_gravity="center_horizontal" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/table2"></TableLayout>
+
+</LinearLayout>
